@@ -10,7 +10,7 @@ library(ggplot2)
 source("~/AdlungLab_HelperFunctions.R")
 
 # load raw data ####
-frede <- as.data.frame(read_excel("Frede_FACSexported.xlsx"))
+frede <- as.data.frame(read_excel("Data/Frede_FACSexported.xlsx"))
 
 # process data ####
 rownames(frede) <- frede$cells_1e6
@@ -66,12 +66,6 @@ frede.fit <- frede.sum[which(frede.sum$id %in% c("Bcell","Mac","Neutr","Tcell"))
 
 colnames(frede.fit)[1] <- "name"
 
-# save processed data ####
-#saveRDS(frede.fit,"Data/scMod_Frede_Fit_Data.rds")
-
-
-# load processed data ####
-frede.fit <- readRDS("Data/scMod_Frede_Fit_Data.rds")
 
 data <- datalist(
   Frede = as.data.frame(frede.fit))
@@ -287,12 +281,12 @@ r$k
 
 rprint <- r
 
-saveRDS(r,paste0("r_Frede_i6.Rdata"))
+saveRDS(r,paste0("Output/r_Frede_i6.Rdata"))
 
 
 # Observed vs. Predicted plot ####
 
-r <- readRDS("r_Frede_i6.Rdata")
+r <- readRDS("Data/r_Frede_i6.Rdata")
 
 
 r$plots$waterfall + theme_adlunglab(base_size = 10) + 
